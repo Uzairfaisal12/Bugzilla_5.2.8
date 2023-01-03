@@ -1,0 +1,46 @@
+<div class= "container p-1 mb-2 bg-hide text-white text-center">
+  <table class="table  text-white ">
+    <thead class="thead-dark">
+      <tr>
+        <th scope= "col">Bug Title</th>
+        <th scope= "col">Description</th>
+        <th scope= "col">Start date</th>
+        <th scope= "col">Bug Screenshot</th>
+        <% if current_user.role == "qa" %>
+          <th scope= "col">Actions</th>
+        <% end %>
+        <% if current_user.role == "developer" %>
+          <th scope= "col">State</th>
+        <%end%>
+      </tr>
+    </thead>
+    <tbody>
+      <% @project.buggs.each do |bugg|%>
+        <tr>
+          <td><%= bugg.title%></td>
+          <td><%= bugg.description%></td>
+          <td><%= bugg.startdate%></td>
+          <% if bugg.image.attached? %>
+            <td><%= image_tag bugg.image, size: "75x75" %></td>
+          <% else %>
+            <td> <%= image_tag "download.jpeg", size: "75x75" %></td>
+          <% end %>
+          <% if current_user.developer? %>
+            <td>
+              <%= link_to bugg.state, start_working_project_bugg_path(bugg.project, bugg.id), class: "btn btn-outline-primary" if bugg.state == 'new created' %>
+              <%= link_to bugg.state, in_progress_project_bugg_path(bugg.project, bugg.id), :class=>"btn btn-outline-primary" if bugg.state == 'started' %>
+              <%= link_to bugg.state, completed_project_bugg_path(bugg.project, bugg.id), :class=>"btn btn-outline-primary" if bugg.state == 'inprogress' %>
+              <%= link_to bugg.state, completed_project_bugg_path(bugg.project, bugg.id), :class=>"btn btn-outline-primary" if bugg.state == 'completed' %>
+            </td>
+          <% end %>
+          <td>
+            <% if current_user.role == "qa" %>
+              <%= link_to "", edit_project_bugg_url(bugg.project, bugg.id), class: "fa-solid fa-pen-to-square" %>
+              <%= button_to "", project_bugg_path(bugg.project,bugg.id), method: :delete, class: "fa-solid fa-trash" %>
+          </td>
+            <%end%>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
+</div>

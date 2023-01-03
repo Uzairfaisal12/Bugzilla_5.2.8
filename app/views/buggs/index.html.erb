@@ -1,0 +1,21 @@
+<h1>All Buggs</h1>
+<%= link_to "New Bugg", new_project_bugg_url, class: "btn btn-primary ml-3"%>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Bugg Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Start date</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%Bugg.all.each do |bugg|%>
+      <tr>
+        <td><%=bugg.title%></td>
+        <td><%=bugg.description%></td>
+        <td><%=bugg.startdate%></td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>

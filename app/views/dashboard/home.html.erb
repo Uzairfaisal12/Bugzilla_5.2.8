@@ -1,0 +1,18 @@
+<% if user_signed_in? %>
+  <div class= "p-1 mb-2 bg-hide text-black text-center">
+    <div> Welcome! <%= current_user.name %> </div>
+    <div> You are currently in  <%= current_user.role %> profile</div>
+  </div>
+  <div class="container p-1 mb-2 bg-hide text-white text-center ">
+    <% if current_user.manager? %>
+      <%= render partial: "dashboard/user", locals: { projects: @projects, manager_edit: true } %>
+    <% elsif current_user.developer? %>
+      <%= render partial: "dashboard/user", locals: { projects: @projects, disable_edit: true } %>
+    <% else %>
+      <%= render partial: "dashboard/user", locals: { projects: @projects, w_edit: true } %>
+    <% end %>
+    <% else %>
+    <%= link_to "Sign in", new_user_session_path %>
+    <%= link_to "Sign Up", new_user_registration_path %>
+  </div>
+<% end %>

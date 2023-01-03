@@ -1,0 +1,25 @@
+<div class = "w-25 container text-center">
+  <%= form_for ([@project, @bugg]) do |f| %>
+    <div>
+      <%= f.label :Title %><br>
+      <%= f.text_field :title, class: 'form-control'%><br>
+    </div>
+    <br>
+    <div>
+      <%= f.label :Description %><br>
+      <%= f.text_area :description, class: 'form-control' %>
+    </div>
+    <br>
+    <div>
+      <%= f.label :startdate %><br>
+      <%= f.datetime_field :startdate, class: 'form-control' %>
+    </div>
+    <div>
+      <%= f.label :image %><br>
+      <%= f.file_field :image, class: 'form-control' %>
+    </div>
+    <br>
+    <%=f.submit"Submit", class: 'btn btn-success ml-3' %>
+    </div>
+  <% end %>
+</div>
