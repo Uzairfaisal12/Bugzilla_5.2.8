@@ -30,7 +30,7 @@
             <td><%= project.description %></td>
               <% if defined?(manager_edit)%>
                 <td><%= project.users.developer.pluck(:name).join(" & ") %></td>
-                <td><%= project.users.qa.pluck(:name).join(" & ") %></td>
+                <td><%= project.users.qa.pluck(:name).jogiin(" & ") %></td>
               <% end %>
                <td>
               <% if defined?(manager_edit)%>
