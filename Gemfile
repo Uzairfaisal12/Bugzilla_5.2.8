@@ -71,7 +71,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'redis', '~> 4.0'
 # Fontawesome- icon
 gem 'font-awesome-sass', '~> 6.2.1'
-gem 'bootstrap-sass', '~> 3.3.6'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"

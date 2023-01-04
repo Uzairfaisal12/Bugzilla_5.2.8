@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+         
   enum role: { manager: 0, developer: 1, qa: 2 }
 
   has_many :project_users, dependent: :destroy

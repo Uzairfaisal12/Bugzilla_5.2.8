@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     end
   end
 
-  # get 'dashboard/developer', to: 'dashboard#developer'
-  # get 'dashboard/manager', to: 'dashboard#manager'
-  # get 'dashboard/qa', to: 'dashboard#qa'
+  get 'dashboard/developer', to: 'dashboard#developer'
+  get 'dashboard/manager', to: 'dashboard#manager'
+  get 'dashboard/qa', to: 'dashboard#qa'
 end
