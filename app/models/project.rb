@@ -5,5 +5,5 @@ class Project < ApplicationRecord
   has_many :project_users
   has_many :users, through: :project_users, dependent: :destroy
 
-  validates :title, :description, presence: true, length: { minimum: 10 }
+  validates :title, :description, presence: true, length: { minimum: 5 }
 end

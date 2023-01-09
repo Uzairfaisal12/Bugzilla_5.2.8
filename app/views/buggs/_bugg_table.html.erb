@@ -36,7 +36,7 @@
           <td>
             <% if current_user.role == "qa" %>
               <%= link_to "", edit_project_bugg_url(bugg.project, bugg.id), class: "fa-solid fa-pen-to-square" %>
-              <%= button_to "", project_bugg_path(bugg.project,bugg.id), method: :delete, class: "fa-solid fa-trash" %>
+              <%= link_to "", project_bugg_path(bugg.project,bugg.id), method: :delete, class: "fa-solid fa-trash" %>
           </td>
             <%end%>
         </tr>

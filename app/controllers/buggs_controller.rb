@@ -10,15 +10,23 @@ class BuggsController < ApplicationController
   def new
     @project = Project.find(params[:project_id])
     @bugg = @project.buggs.build
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create
     @project = Project.find(params[:project_id])
 
-    respond_to do |f|
+    respond_to do |format|
       if @project.buggs.create(bugg_params)
-        f.html { redirect_to project_path(@project), notice: 'Bug was successfully created.' }
-        f.json { render :show, status: :created, location: @bugg }
+        @buggs = Bugg.all
+
+        format.html { redirect_to project_path(@project), notice: 'Bug was successfully created.' }
+        format.json { render :show, status: :created, location: @bugg }
+        format.js
       else
         f.html { render :new, status: :unprocessable_entity }
         f.json { render json: @bugg.errors, status: :unprocessable_entity }
@@ -50,7 +58,7 @@ class BuggsController < ApplicationController
 
   def destroy
     @bugg.destroy
-    redirect_to project_bugg
+    redirect_to project_url
   end
 
   def start_working

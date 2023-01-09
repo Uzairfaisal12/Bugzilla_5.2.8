@@ -1,5 +1,6 @@
-<div class = "w-25 container text-center">
-  <%= form_for ([@project, @bugg]) do |f| %>
+<div class = "w-25 container text-center text-black">
+  <%= form_for ([@project, @bugg]), html: {multipart: true}, remote: true do |f| %>
+  <strong>Create Project Bug</strong>
     <div>
       <%= f.label :Title %><br>
       <%= f.text_field :title, class: 'form-control'%><br>

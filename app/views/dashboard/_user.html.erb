@@ -1,53 +1,15 @@
-<div class = "text-white">
+<div class = "text-black">
   <% if defined?(manager_edit)%>
-    <%= link_to 'New Project', new_project_url,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'btn btn-primary'}  %>
+    <%= link_to 'New Project', new_project_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'btn btn-primary'}  %>
     <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
-          <%= render 'projects/project'%>
         </div>
       </div>
     </div>
-   <% end %>
+  <% end %>
 </div>
-  <% if projects.present? %>
-    <table class="table text-white ">
-      <thead>
-        <tr>
-          <th scope="col">Project Title</th>
-          <th scope="col">Description</th>
-          <% if defined?(manager_edit)%>
-            <th scope="col">Developer Assigned</th>
-            <th scope="col">QA Assigned</th>
-          <% end %>
-            <th scope="col">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <%projects.all.each do |project|%>
-          <tr>
-            <td><%= project.title %></td>
-            <td><%= project.description %></td>
-              <% if defined?(manager_edit)%>
-                <td><%= project.users.developer.pluck(:name).join(" & ") %></td>
-                <td><%= project.users.qa.pluck(:name).jogiin(" & ") %></td>
-              <% end %>
-               <td>
-              <% if defined?(manager_edit)%>
-                <%= link_to "", edit_project_path(project), class: "fa-solid fa-pen-to-square fa-1x"  %>
-                <%= link_to "", project_path(project), method: :delete , class: "fa-solid fa-trash fa-1x" %>
-              <% end %>
-              <%= link_to "", project, class: "fa-solid fa-info-circle fa-1x"%>
-            </td>
-          </tr>
-        <%end%>
-      </tbody>
-    </table>
-  <% else %>
-    <% if current_user.developer? %>
-      <strong><p><span style = "color:#8866ff;">No projects assigned yet!</span></p></strong>
-    <%else%>
-      <strong><p><span style = "color:#8866ff;">No projects created yet!</span></p></strong>
-    <%end%>
-  <%end%>
+
+<div class = "text-white" id="submitted">
+  <%= render 'dashboard/project_table', projects: projects %>
 </div>

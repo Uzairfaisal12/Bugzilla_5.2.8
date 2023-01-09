@@ -1,13 +1,2 @@
-$('#demo').on('click',function(e){
-    e.preventDefault();
-    // Code goes here
-});
-
-
-
-
-function submit_function(form){
-    form.submit(function (ev) {
-        ev.preventDefault();
-    });
-}
+$("#modal-window").modal('hide');
+$("#submitted").html("<%= j (render 'dashboard/project_table', projects: @projects) %>");

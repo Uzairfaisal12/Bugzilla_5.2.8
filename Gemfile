@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 ruby '2.7.2'
@@ -42,8 +44,8 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console'
   gem 'listen', '~> 3.0.5'
+  gem 'web-console'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
@@ -60,7 +62,7 @@ end
 gem 'devise-bootstrap-views', '~> 0.0.7'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -85,8 +87,8 @@ gem 'font-awesome-sass', '~> 6.2.1'
 # gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-gem 'image_processing', '~> 1.2'
 gem 'bootstrap', '~> 5.1', '>= 5.1.3'
+gem 'image_processing', '~> 1.2'
 # Use SCSS for stylesheets
 gem 'aws-sdk-s3', require: false
 gem 'azure-storage-blob', require: false
@@ -97,3 +99,4 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-chosen-bootstrap'
 end
 gem 'jquery-rails'
+gem 'rubocop'

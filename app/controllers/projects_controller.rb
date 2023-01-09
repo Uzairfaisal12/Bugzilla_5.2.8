@@ -21,6 +21,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
+         @projects = Project.all
         format.html { redirect_to root_path, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
         format.js
@@ -47,6 +48,9 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
   end
 
   def destroy
@@ -61,6 +65,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:title, :description, user_ids:[])
+    params.require(:project).permit(:title, :description, user_ids: [])
   end
 end

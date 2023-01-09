@@ -1,0 +1,53 @@
+<% if @projects.present? %>
+  <table class="table text-white ">
+    <thead>
+      <tr>
+        <th scope="col">Project Title</th>
+        <th scope="col">Description</th>
+        <% if current_user.manager?%>
+          <th scope="col">Developer Assigned</th>
+          <th scope="col">QA Assigned</th>
+        <% end %>
+          <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% projects.all.each do |project| %>
+        <tr>
+          <td><%= project.title %></td>
+          <td><%= project.description %></td>
+            <% if current_user.manager?%>
+              <td><%= project.users.developer.pluck(:name).join(" & ") %></td>
+              <td><%= project.users.qa.pluck(:name).join(" & ") %></td>
+            <% end %>
+              <td>
+              <div id = "deletion">
+                <% if current_user.manager?%>
+                  <%= link_to '', edit_project_path(project), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: "fa-solid fa-pen-to-square"}  %>
+                    <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-xl" role="document">
+                        <div class="modal-content">
+                        </div>
+                      </div>
+                    </div>
+                  <%= link_to "", project_path(project), method: :delete , class: "fa-solid fa-trash fa-1x", remote: true, data: { confirm: 'Are you sure to delete Project' } %>
+                <% end %>
+                  <%= link_to "", project_path(project), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: "fa-solid fa-info-circle fa-1x"}  %>
+                      <div id="modal-window" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl" role="document">
+                          <div class="modal-content">
+                          </div>
+                        </div>
+                    </div>
+                </div>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
+<% else %>
+  <% if current_user.developer? %>
+    <strong><p><span style = "color:#8866ff;">No projects assigned yet!</span></p></strong>
+  <%else%>
+    <strong><p><span style = "color:#8866ff;">No projects created yet!</span></p></strong>
+  <%end%>
+<%end%>
